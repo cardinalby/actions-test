@@ -1,0 +1,23 @@
+name: "schedule-action"
+on:
+  push:
+    branches:
+      - '*'
+jobs:
+  myjob:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          echo $GITHUB_WORKFLOW
+          echo $GITHUB_RUN_ID
+          echo $GITHUB_RUN_NUMBER
+          echo $GITHUB_ACTION
+#      - uses: cardinalby/schedule-job-action@v1
+#        env:
+#          GITHUB_TOKEN: ${{ github.token }}
+#        with:
+#          templateYmlFile: '.github-scheduled-workflows/example.yml'
