@@ -16,3 +16,8 @@ jobs:
 
       - name: Fake work
         run: echo $GITHUB_SHA
+
+      - name: Remove scheduled job
+        uses: cardinalby/unschedule-job-action@master
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
