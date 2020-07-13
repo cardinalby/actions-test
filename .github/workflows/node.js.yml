@@ -12,7 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: cardinalby/schedule-job-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.WORKFLOWS_TOKEN }}
         with:
+          ghToken: ${{ secrets.WORKFLOWS_TOKEN }}
           templateYmlFile: '.github-scheduled-workflows/example.yml'
