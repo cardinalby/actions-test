@@ -1,17 +1,17 @@
-#name: "schedule-action"
-#on:
-#  push:
-#    branches:
-#      - '*'
-#jobs:
-#  myjob:
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        node-version: [12.x]
-#    steps:
-#      - uses: actions/checkout@v2
-#      - uses: cardinalby/schedule-job-action@master
-#        with:
-#          ghToken: ${{ secrets.WORKFLOWS_TOKEN }}
-#          templateYmlFile: '.github-scheduled-workflows/example.yml'
+name: "schedule-action"
+on:
+  push:
+    branches:
+      - '*'
+jobs:
+  myjob:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cardinalby/schedule-job-action@master
+        with:
+          ghToken: ${{ secrets.WORKFLOWS_TOKEN }}
+          templateYmlFile: '.github-scheduled-workflows/example.yml'
