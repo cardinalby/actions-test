@@ -1,0 +1,25 @@
+name: example-cron-action
+'on':
+  schedule:
+    - cron: '* * * * *'
+jobs:
+  fetchToken:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 12.x
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: '${{ env.DELAYED_JOB_CHECKOUT_REF }}'
+      - name: Fake work
+        run: echo $GITHUB_SHA
+      - name: Remove scheduled job
+        uses: cardinalby/unschedule-job-action@master
+        with:
+          ghToken: '${{ secrets.WORKFLOWS_TOKEN }}'
+    env:
+      DELAYED_JOB_CHECKOUT_REF: 03b8d1ef7527edc22b238bd4d2fcb16ec529b9cb
+      DELAYED_JOB_CHECKOUT_REF_IS_TAG: 'false'
+      DELAYED_JOB_WORKFLOW_FILE_PATH: .github/workflows/example-03b8d1ef7527edc22b238bd4d2fcb16ec529b9cb.yml
